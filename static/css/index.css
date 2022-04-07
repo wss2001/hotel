@@ -1,0 +1,66 @@
+
+.lianjie{
+    box-sizing: border-box;
+    height: 138px;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+}
+.lianjie h1{
+    font-size: 14px;
+    color: #333;
+    padding-top: 25px;
+    margin-bottom: 20px;
+}
+.lianjie div a{
+    color: #999;
+    font-size: 12px;
+    line-height: 24px;
+}
+
+.footer{
+    box-sizing: border-box;
+    height: 144px;
+    padding-top: 28px;
+}
+.footer .footer-img{
+    float: left;
+    margin-right: 18px;
+}
+.footer p{
+    color: #333;
+    font-size: 12px;
+    line-height: 24px;
+}
+.jumbotron{
+    background-color: #fff;
+}
+.page-header{
+    border-radius: 10px;
+    background: linear-gradient(to right,#ECF0F1,#7F8C8D);
+}
+.login-span span{
+    font-size: 30px;
+    font-weight: 700;
+}
+.main{
+    display: flex;
+    margin-bottom: 10px;
+}
+.login-div{
+    margin-top: 170px;
+}
+.container{
+    background-color: #f2f2f2;
+}
+.jumbotron{
+    box-shadow:  0 5px 15px -5px rgba(0,0,0,.5);
+}
+.jumbotron.jz{
+    background: linear-gradient(to right,#bedcaf,#decafd);
+}
+.jumbotron.jh{
+    background: linear-gradient(to right,#ffff66,#ff6666);
+}
+.jumbotron.jp{
+    background: linear-gradient(to right,#6699ff,#66ff99);
+}

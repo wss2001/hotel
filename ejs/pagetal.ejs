@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑珍珠房间</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous">
+    </script>
+    <style>
+        body{
+            background: url('./img/webp.jpg');
+        }
+        img{
+            width: 200px;
+            height: 200px;
+        }
+        a{
+            color: #b1b7b8;
+        }
+        a:hover{
+            text-decoration: none;
+            color: #fff;
+        }
+        .zong{
+            display: flex;
+            justify-content: left;
+            margin-bottom: 50px;
+            box-shadow:  0 5px 15px -5px rgba(231, 229, 229, 0.5);
+        }
+        .image{
+            margin-right: 50px;
+        }
+        #can {
+            /* 设置成block,有宽高 */
+            display: block;
+        }
+        .page-header h1{
+            color: #b1b7b8;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="can" width="1300" height="100">不支持的浏览器</canvas>
+    <div class="container">
+        <div class="page-header">
+            <h1>黑珍珠酒店房间欢迎您 <small>请选择房间</small></h1>
+        </div>
+        <% result.forEach(function(e){ %>
+        <a href="/p?_id=<%= e._id%>" class="zong">
+            <div class="image">
+                <img src="./img/room.jpg" title="<%= e.type%>房">
+            </div>
+            
+            <div class="intro">
+                <h3><%= e.type%>房</h3>
+                <span>房间号:<%= e.roomNumber%> </span>
+                <p><span>房间简介:<%= e.intro%>  </span></p>
+            </div>
+            <hr>
+        </a>
+    <%})%>
+    </div>
+    <script src="./js/canvas.js"></script>
+</body>
+</html>

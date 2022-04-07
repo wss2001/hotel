@@ -1,0 +1,61 @@
+.music-warp{
+    height: 95%;
+    width: 95%;
+    margin: 0px;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    position: relative;
+} 
+.search-list {
+    width: 300px;
+    background-color: white;
+    /* 漂浮 */
+    position: absolute;
+    /* 先隐藏 */
+    transform: translateY(-1000px);
+    transition: all .3s linear;
+    /* 内部列表滚动 */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 300px;
+}
+
+.search-list.active {
+    /* 点击出现 */
+    transform: translateY(0px);
+}
+
+#result-list {
+    /* 去掉圆点 */
+    list-style: none;
+    padding: 0px;
+}
+
+#result-list li {
+    cursor: pointer;
+    padding: 10px;
+
+}
+
+#result-list li:hover {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    background-color: rgb(199, 198, 198);
+}
+#lrc-warp{
+    list-style: none;
+    margin-top: 240px;
+    text-align: center;
+    transition: all .1s;
+}
+.lrc-item{
+    height: 20px;
+}
+.lrc-all-warp{
+    width: 60%;
+    height: 500px;
+    background-color:#f2f2f2;
+    padding-top: 1px;
+    text-align: center;
+    overflow: hidden;
+}

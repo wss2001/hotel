@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑珍珠后台管理</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.3.1/echarts.common.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.1/axios.js"></script>
+    <link rel="stylesheet" href="./css/music.css">
+    
+    <style>
+        .warp-warp {
+            position: relative;
+        }
+
+        .right-warp {
+            position: absolute;
+            width: 100%;
+            min-height: 500px;
+            display: none;
+        }
+
+        .right-warp.active {
+            display: block;
+        }
+        .right-warp p{
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>黑珍珠酒店后台管理 <small>v0.00.01</small> <small><a href="/">首页</a></small></h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" class="list-item active" data-warp="home"><a href="#">Home</a></li>
+                    <li role="presentation" class="list-item" data-warp="seeRoom"><a href="#">查看销量</a></li>
+                    <li role="presentation" class="list-item " data-warp="shenhe" id="shenhe-btn"><a href="#">审核评论</a>
+                    </li>
+                    <li role="presentation" class="list-item " data-warp="change" id="change-btn"><a href="#">更改房间</a>
+                    </li>
+                    <li role="presentation" class="list-item " data-warp="addRoom" id="add-btn"><a href="#">新增房间</a>
+                    </li>
+                    <li role="presentation" class="list-item " data-warp="seePeople" id="add-btn"><a href="#">客人信息</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-9 warp-warp">
+                <!-- 主页部分 -->
+                <div class="right-warp" id="home">
+                    <p>听一首音乐缓解下你的心情吧,尊贵的黑珍珠领航人</p>
+                    <div class="music-warp">
+                        <div>
+                            <input type="text" id="keyword">
+                            <button id="search-button">搜索</button>
+                        </div>
+                        <!-- 搜索列表 -->
+                        <div class="search-list">
+                            <ul id="result-list">
+                            </ul>
+                        </div>
+                        <!-- 歌词容器 -->
+                        <div class="lrc-all-warp">
+                            <ul id="lrc-warp">
+                            </ul>
+                        </div>
+                        <audio src="" id="audio" controls></audio>
+                    </div>
+                    
+                </div>
+                <!-- 查看房间部分 -->
+                <div class="right-warp" id="seeRoom">
+                    <div id="myEcharts" style="width: 850px;height:500px;"></div>
+                </div>
+                <!-- 审核评论部分 -->
+                <div class="right-warp" id="shenhe">
+                    
+                </div>
+                <!-- 修改房间状态部分 -->
+                <div class="right-warp" id="change">
+                    <!-- <a href="http://localhost:3005/admin/change">ceshi</a> -->
+                    <div class="page-header changeRoom">
+                    </div>
+                </div>
+                <!-- 新增房间部分 -->
+                <div class="right-warp" id="addRoom">
+                    <form action="/admin/addRoom" method="post">
+                        <div class="form-group">
+                            <label for="title">房间号</label>
+                            <input type="number" class="form-control" name="roomNumber" id="roomNumber" placeholder="请输入房间号">
+                        </div>
+                        <div class="form-group">
+                            <label for="author">房间类型</label>
+                            <input type="text" class="form-control" name="type" id="type" placeholder="请输入房间类型">
+                        </div>
+                        <div class="form-group">
+                            <label for="sort">房间价格</label>
+                            <input type="number" class="form-control" name="price" id="price" placeholder="请输入房间价格">
+                        </div>
+                        <div class="form-group">
+                            <label for="sort">会员价格</label>
+                            <input type="number" class="form-control" name="mPrice" id="mPrice" placeholder="请输入会员房间价格">
+                        </div>
+                        <div class="form-group">
+                            <label for="intro">房间简介</label>
+                            <input type="text" class="form-control" name="intro" id="intro" placeholder="请输入简介">
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-default">新增房间</button>
+                    </form>
+                </div>
+                <!-- 查看入住人信息部分 -->
+                <div class="right-warp" id="seePeople">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>入住人姓名</th>
+                                <th>入住人手机号</th>
+                                <th>入住人身份证号</th>
+                                <th>入住房间号</th>
+                                <th>入住日期</th>
+                                <th>离店日期</th>
+                                <th>下单时间</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/admin.js"></script>
+    <script src="./js//echarts.js"></script>
+    <script src="./js//music.js"></script>
+    <script src="./js/comment.js"></script>
+    <script src="./js//seePeople.js"></script>
+    <script src="./js/changeRoomState.js"></script>
+    <script>
+
+    </script>
+</body>
+</html>

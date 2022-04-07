@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑珍珠房间详情</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous">
+    </script>
+    <style>
+        img{
+            width: 400px;
+        }
+        .xiangqing{
+            display: flex;
+            justify-content: left;
+        }
+        .image{
+            margin-right: 30px;
+            margin-top: 30px;
+        }
+        span{
+            font-weight: 700;
+        }
+        a{
+            font-size: 20px;
+            text-decoration: none;
+        }
+        .room-title{
+            width: 100%;
+            height: 50px;
+            background-color: rgba(68, 68, 153, 0.349);
+            line-height: 50px;
+        }
+        .room-title span{
+            font-size: large;
+            margin-right: 150px;
+        }
+        .roomsheshi,.roomfuwu{
+            margin-top: 30px;
+            overflow: hidden;
+        }
+        .roomsheshi dl,.roomfuwu dl{
+            float: left;
+            margin-right: 80px;
+        }
+        .mPrice{
+            color: #E74C3c;
+        }
+        .price{
+            color:#2C3E50
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <ul class="nav nav-pills">
+                <li role="presentation"><a href="tel:13388886666">联系我们</a></li>
+                <li role="presentation"><a href="/">酒店首页</a></li>
+                <li role="presentation"><a href="/member/login">会员登录</a></li>
+                <li role="presentation"><a href="/member/register">会员注册</a></li>
+            </ul>
+        </div>
+        
+        <div class=" xiangqing">
+            <div class="image">
+                <img src="./img/haohua.jpg" alt="">
+            </div>
+            <div>
+                <h4><%= data.type%>房</h4>
+                <br>
+                <h3 class="label label-success"><%= data.type%>型</h3><br>
+                <h4 class="glyphicon glyphicon-usd price" aria-hidden="true">价格:<%= data.price%>元</h4>
+                <br>
+                <h3 class="glyphicon glyphicon-usd mPrice" aria-hidden="true">会员价格:<%= data.mPrice%>元</h3>
+                <p>地址：北京东城区工体北路新中西街8号</p>
+                <p>电话：86-10-65007788</p>
+                <hr>
+                <p><span>房间号:<%= data.roomNumber%></span></p>
+                <p class="room-intro">房间简介:&nbsp; &nbsp;&nbsp;<%= data.intro%></p>
+            </div>
+        </div>
+        <div>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalp">普通入住</button>
+        </div>
+        <div>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalm">会员入住</button>
+        </div>
+        <!-- 普通入住 -->
+        <div class="modal fade" id="myModalp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">输入信息</h4>
+                </div>
+                <div class="modal-body">
+                <form class="form-horizontal" action="/pruzhu?_id=<%= data._id%>" method="post">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="请输入名字">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber" class="col-sm-2 control-label">电话</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="请输入电话">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardId" class="col-sm-2 control-label">身份证号</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" name="cardId" id="cardId" placeholder="请输入身份证号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="comeDate" class="col-sm-2 control-label">入住日期</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="comeDate" id="comeDate" placeholder="xxxx-xx-xx">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="goDate" class="col-sm-2 control-label">离店日期</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="goDate" id="goDate" placeholder="xxxx-xx-xx">
+                        </div>
+                    </div>
+                    
+                
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary">提交入住</button>
+            </form>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- 会员入住 -->
+        <div class="modal fade" id="myModalm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">输入信息</h4>
+                </div>
+                <div class="modal-body">
+                <form class="form-horizontal" action="/mruzhu?_id=<%= data._id%>" method="post">
+                    <div class="form-group">
+                        <label for="username" class="col-sm-2 control-label">账号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="username" placeholder="请输入账号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">入住日期</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="comeDate" placeholder="xxxx-xx-xx">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">离店日期</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="goDate"  placeholder="xxxx-xx-xx">
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary">提交入住</button>
+            </form>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+        <div class="room-title">
+            <span class="room-title-first ng-binding">房型</span>
+            <span class="ng-binding">早餐</span>
+            <!-- <span> </span> -->
+            <span class="ng-binding">取消政策</span>
+            <span class="ng-binding">人数上限</span>
+            <span class="ng-binding">房价</span>
+        </div>
+        <!-- 注意事项 -->
+        <div>
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#">房间信息</a></li>
+                <li role="presentation"><a href="#roomzc">酒店政策</a></li>
+                <li role="presentation"><a href="#roomss">房间设施</a></li>
+                <li role="presentation"><a href="#roomfw">酒店服务</a></li>
+                <li role="presentation"><a href="#pinglun">评论</a></li>
+                <li role="presentation"><a href="#fabiaopl">发表评论</a></li>
+            </ul>
+            <div>
+                <span>房间信息</span><br>
+                <span>入住时间：14:00后</span><br>
+                <span>退房时间：12:00前</span><br>
+                <span>房间介绍：</span>
+                <p>
+                    房内主次卧室两间，各含卫生间，休闲娱乐厅一间，会客厅一间，房内安全舒适、功能齐全，设有中央空调、闭路及卫星电视、国内/国际直拨电话，还可提供宽带上网以及其它娱乐、服务设施。
+                </p>
+                <hr>
+                <span>酒店政策</span><br>
+                <div id="roomzc">
+                    <span>外宾：</span>可接待外宾<br>
+                    <span>儿童：</span>不接受18岁以下客人单独入住<br>
+                    <span>宠物：</span>不可携带宠物 (遵守视障人士携带导盲犬入住酒店相关政策) <a href="http://www.criminallaw.com.cn/">查看详情</a><br>
+                    <span>发票：</span>可开具增值税普通发票
+                    <p>
+                        为贯彻落实《北京市宾馆不得主动提供的一次性用品目录》相关规定，自2020年5月1日起，北京市宾馆不主动提供的一次性用品目录包括牙刷、梳子、浴擦、剃须刀、指甲锉、鞋擦这六种。详询酒店前台，感谢您的支持与理解！
+                    温馨提示：应相关要求，进入酒店的客人需测体温，通过北京健康宝进行扫码登记，办理入住时需出示防疫绿色行程卡。
+                    境外进入北京（中外宾）、重点疫区及国内其他中高风险地区客人请在下单前与酒店确认接待政策，以免影响您的入住。
+                    1.周末以及节假日的房价会有不同幅度的调整。
+                    2.宠物禁止入店（导盲犬除外）
+                    视障人士携带导盲犬入住酒店相关政策
+                    根据《中华人民共和国残疾人保障法》的相关规定，接受视障宾客携带导盲犬进入酒店对客开放区域，并根据现行法律法规合理享用酒店设施与服务。
+                    宾客携带导盲犬办理登记入住时，除常规手续外，还需提供残疾人证（红色证件代表视力残疾），盖有公安部门或残疾人联合会公章的导盲犬工作证（或带有国际导盲犬联盟IGDF标识）以及动物健康免疫证明，酒店将安排视障人士与导盲犬同住无障碍客房。酒店根据《城市养犬管理条例》规定，不允许除工作导盲犬外的其他宠物进入。
+                    如果导盲犬在没有工作许可或证书的情况下为视障客人工作，酒店将提供其他方法例如：为导盲犬提供其他的安置地点，并由酒店员工提供视障客人所需的指导和协助。
+                    餐饮服务区域：宾客携带导盲犬可以进入酒店公共区域以及餐厅就餐。
+                    宾客携带导盲犬进入酒店，须负责在任何情况下照料及控制好导盲犬，以确保不会影响其他宾客权益。
+                    </p>
+                </div>
+                <hr>
+                <div class="roomsheshi" id="roomss">
+                    <span>房间设施</span><br>
+                    <dl>
+                        <dd>礼宾部</dd>
+                        <dd>自助值机</dd>
+                        <dd>游戏室</dd>
+                        <dd>中餐厅</dd>
+                    </dl>
+                    <dl>
+                        <dd>游泳池</dd>
+                        <dd>餐厅大堂</dd>
+                        <dd>区域无线网络</dd>
+                        <dd>蒸气浴</dd>
+                    </dl>
+                    <dl>
+                        <dd>前台保险柜</dd>
+                        <dd>美容院</dd>
+                        <dd>残疾人设施</dd>
+                        <dd>电梯室内</dd>
+                    </dl>
+                    <dl>
+                        <dd>游泳池</dd>
+                        <dd>健身房</dd>
+                        <dd>会议设备</dd>
+                        <dd>投影仪</dd>
+                    </dl>
+                    <dl>
+                        <dd>酒吧</dd>
+                        <dd>高射投影仪</dd>
+                        <dd>休息区轮椅</dd>
+                        <dd>通道收费停车</dd>
+                    </dl>
+                    <dl>
+                        <dd>桑拿浴</dd>
+                        <dd>理发美容室</dd>
+                        <dd>自助取款机</dd>
+                        <dd>公共区域空调</dd>
+                    </dl>
+                </div>
+                <hr>
+                <div class="roomfuwu" id="roomfw">
+                    <span>酒店服务</span><br>
+                    <dl>
+                        <dd>24小时送餐</dd>
+                        <dd>服务医生出诊服务</dd>
+                        <dd>24小时保安</dd>
+                    </dl>
+                    <dl>
+                        <dd>行政楼层</dd>
+                        <dd>自助早餐礼品店</dd>
+                        <dd>24小时行李服务</dd>
+                    </dl>
+                    <dl>
+                        <dd>时钟/闹钟夜床服务</dd>
+                        <dd>24小时前台服务</dd>
+                        <dd>叫醒服务</dd>
+                    </dl>
+                    <dl>
+                        <dd>特快退房服务</dd>
+                        <dd>24小时大堂经理</dd>
+                        <dd>电脑租赁</dd>
+                    </dl>
+                    <dl>
+                        <dd>特快入住登记服务</dd>
+                        <dd>24小时大堂经理</dd>
+                        <dd>旅游票务服务</dd>
+                    </dl>
+                </div>
+                <!-- 评论内容 -->
+                <div id="pinglun">
+                    
+                        <h3>评论</h3>
+                        <% result.forEach(function(e){ %>
+                            <span class="badge"></span>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <%= e.content %>
+                                </div>
+                                <div class="panel-footer">
+                                    <p>姓名:<%= e.name %></p>
+                                    <p>时间:<%= e.date %></p>
+                                </div>
+                            </div>
+                        <% })%>
+                </div>
+                <!-- 评论完成 -->
+                <!-- 发表评论 -->
+                <div id="fabiaopl">
+                    <h3>我也想发表评论评论</h3>
+                    <form action="/submitComment?_id=<%= data._id%>" method="post">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">你的姓名</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="name"
+                                placeholder="你的姓名">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3" name="content" placeholder="评论内容"></textarea>
+                        </div>
+                </div>
+                <button type="submit" class="btn btn-default">提交</button>
+                </form>
+                <!-- 发表评论完成 -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
