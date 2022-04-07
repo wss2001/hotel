@@ -1,0 +1,47 @@
+会员
+member{
+    _id:''
+    mUsername:'',
+    mPassword:'',
+    surePassword,
+    name:''
+    phoneNumber:'',
+    cardId:''  
+}
+入住人信息
+people{
+    name:'',
+    phoneNumber:'',
+    cardId:'',
+    roomNumber'',
+    type:'',
+    comeDate:'',
+    goDate:''
+    date:''
+}
+房间:
+room:{
+    房间号:'',
+    price:'',
+    mPrice:'',
+    type:'',
+    name:'',
+    phoneNumber:'',
+    cardId:'',
+    state:'',
+    comeDate:'',
+    goDate:'',
+    occupancy:''  入住量
+}
+评论
+comment:{
+    fid:'6243fb261b04fec1b574f0c9',
+     content:'房子很好,可以和美女一起游泳',
+     date:moment().format('YYYY-MM-DD  HH:mm'),
+     name:'王好人',
+     state:1  // 0为评论但并没有渲染,返回后台需要评定 ,1 为通过评审渲染 ,2为没通过评审不渲染
+}
+
+new一个会员登陆cookie, 一旦登录成功保留状态即,会员入住时再进行判断重定向等,根据adminjs来看
+日期采用input显示,后台相减再判断价格,input value显示月份以及年份,手动输入日期
+改房子的状态,手动已'入住完成',以及退房,首页按钮来进行改变,退房改变状态
